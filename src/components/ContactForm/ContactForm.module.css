@@ -1,0 +1,22 @@
+.form {
+  border: 1px solid #000;
+  padding: 16px;
+  border-radius: 8px;
+  width: 392px;
+}
+
+.formInput {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.formInputField {
+  width: 360px;
+  height: 36px;
+}
+
+.button {
+  padding: 8px 16px;
+}
