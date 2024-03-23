@@ -3,7 +3,7 @@ import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contactsOps";
 
-export const Contact = ({ contacts: { name, number, id } }) => {
+export const Contact = ({ contact: { name, number, id } }) => {
   const dispatch = useDispatch();
 
   const formatNumber = (inputNumber) => {
