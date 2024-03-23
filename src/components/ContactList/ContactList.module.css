@@ -3,6 +3,10 @@
   flex-wrap: wrap;
   row-gap: 16px;
   gap: 12px;
+  border-radius: 8px;
+  padding: 16px;
+  justify-content: flex-start;
+  width: 100%;
 }
 .contactListItem {
   width: 280px;
