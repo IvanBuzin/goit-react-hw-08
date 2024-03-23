@@ -1,7 +1,7 @@
 import { FaPhoneAlt, FaUser } from "react-icons/fa";
 import css from "./Contact.module.css";
-import { deleteContact } from "../../redux/contactsOps";
 import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsOps";
 
 export const Contact = ({ contacts: { name, number, id } }) => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const Contact = ({ contacts: { name, number, id } }) => {
   return (
     <div className={css.item}>
       <div className={css.paragraph}>
-        <p>
+        <p className={css.paragraphName}>
           <FaUser className={css.icon} />
           {name}
         </p>
