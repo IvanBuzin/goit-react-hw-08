@@ -1,4 +1,4 @@
-import { FaPhoneAlt, FaUser } from "react-icons/fa";
+import { FaPhoneAlt, FaUser, FaPhoneVolume } from "react-icons/fa";
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contactsOps";
@@ -6,24 +6,25 @@ import { deleteContact } from "../../redux/contactsOps";
 export const Contact = ({ contacts: { name, number, id } }) => {
   const dispatch = useDispatch();
 
-  //const formatNumber = (inputNumber) => {
-  // const pattern = /(\d{3})(\d{2})(\d{2})/;
-  //  const formatedNumber = inputNumber.replace(pattern, "$1-$2-$3");
-  //  return formatedNumber;
-  //};
-
   return (
     <div className={css.item}>
       <div className={css.paragraph}>
-        <p className={css.paragraphName}>
-          <FaUser className={css.icon} size={14} />
-          {name}
-        </p>
-        <p>
-          <FaPhoneAlt className={css.user} size={14} />
-          formatNumber {number}
-        </p>
+        <div>
+          <p className={css.paragraphName}>
+            <FaUser className={css.icon} size={14} />
+            {name}
+          </p>
+          <p>
+            <FaPhoneAlt className={css.user} size={14} />
+            {number}
+          </p>
+        </div>
+        <a className={css.phoneLink} href={`tel:${number}`}>
+          <FaPhoneVolume className={css.phoneIcon} size={20} />
+        </a>
       </div>
+      <hr className={css.line} />
+
       <button
         className={css.button}
         type="button"
