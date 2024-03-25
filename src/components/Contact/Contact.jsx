@@ -6,22 +6,22 @@ import { deleteContact } from "../../redux/contactsOps";
 export const Contact = ({ contacts: { name, number, id } }) => {
   const dispatch = useDispatch();
 
-  const formatNumber = (inputNumber) => {
-    const pattern = /(\d{3})(\d{2})(\d{2})/;
-    const formatedNumber = inputNumber.replace(pattern, "$1-$2-$3");
-    return formatedNumber;
-  };
+  //const formatNumber = (inputNumber) => {
+  // const pattern = /(\d{3})(\d{2})(\d{2})/;
+  //  const formatedNumber = inputNumber.replace(pattern, "$1-$2-$3");
+  //  return formatedNumber;
+  //};
 
   return (
     <div className={css.item}>
       <div className={css.paragraph}>
         <p className={css.paragraphName}>
-          <FaUser className={css.icon} />
+          <FaUser className={css.icon} size={14} />
           {name}
         </p>
         <p>
-          <FaPhoneAlt className={css.user} />
-          {formatNumber(number)}
+          <FaPhoneAlt className={css.user} size={14} />
+          formatNumber {number}
         </p>
       </div>
       <button
