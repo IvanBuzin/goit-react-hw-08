@@ -27,13 +27,15 @@ const authSlice = createSlice({
       })
       .addCase(userRegister.rejected, (state, action) => {
         state.error = action.payload;
-      })
-      .addCase(userLogIn.pending, () => {})
-      .addCase(userLogIn.fulfilled, () => {})
-      .addCase(userLogIn.rejected, () => {})
-      .addCase(userLogOut.pending, () => {})
-      .addCase(userLogOut.fulfilled, () => {})
-      .addCase(userLogOut.rejected, () => {}),
+      }),
+  //   .addCase(userLogIn.pending, (state, action) => {})
+  //   .addCase(userLogIn.fulfilled, (state, action) => {
+  //     state.isLoggedIn = true;
+  //   })
+  //   .addCase(userLogIn.rejected, (state, action) => {})
+  //   .addCase(userLogOut.pending, (state, action) => {})
+  //   .addCase(userLogOut.fulfilled, (state, action) => {})
+  //   .addCase(userLogOut.rejected, (state, action) => {}),
 });
 
 export const authReducer = authSlice.reducer;
