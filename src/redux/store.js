@@ -10,10 +10,9 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-//import contactsReducer from "./contacts/slice";
+import contactsReducer from "./contacts/slice";
 import filtersReducer from "./filters/slice";
 import authReducer from "./auth/slice";
-import contactsSlice from "./contacts/slice";
 
 const persistedAuthSlice = persistReducer(
   {
@@ -26,8 +25,7 @@ const persistedAuthSlice = persistReducer(
 
 export const store = configureStore({
   reducer: {
-    //  contacts: contactsReducer,
-    contacts: contactsSlice,
+    contacts: contactsReducer,
     filters: filtersReducer,
     auth: persistedAuthSlice,
   },
