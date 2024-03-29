@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import css from "./Navigation.module.css";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
-import { selectIsLogged } from "../../redux/auth/selector";
+import { selectIsLogged } from "../../redux/auth/selectors";
 import LoggedUser from "../LoggedUser/LoggedUser";
 import RegistrationMenu from "../RegistrationMenu/RegistrationMenu";
 
