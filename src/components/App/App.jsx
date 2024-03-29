@@ -1,11 +1,4 @@
-// import { useDispatch } from "react-redux";
 import "../../../node_modules/modern-normalize/modern-normalize.css";
-// import { ContactForm } from "../ContactForm/ContactForm";
-// import { ContactList } from "../ContactList/ContactList";
-// import { SearchBox } from "../SearchBox/SearchBox";
-// import css from "./App.module.css";
-// import { useEffect } from "react";
-// import { fetchContacts } from "../../redux/contactsOps";
 import Navigation from "../Navigation/Navigation";
 
 import { Route, Routes } from "react-router-dom";

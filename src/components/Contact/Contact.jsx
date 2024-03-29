@@ -35,3 +35,5 @@ export const Contact = ({ contacts: { name, number, id } }) => {
     </div>
   );
 };
+
+export default Contact;
