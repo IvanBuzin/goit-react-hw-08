@@ -19,3 +19,4 @@ export const ContactList = () => {
     <p>Phonebook is empty</p>
   );
 };
+export default ContactList;
