@@ -1,4 +1,4 @@
-import { selectFilteredContacts } from "../../redux/contactsSlice";
+import { selectFilteredContacts } from "../../redux/contacts/contactsSlice";
 import { Contact } from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { nanoid } from "nanoid";
