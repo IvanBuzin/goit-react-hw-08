@@ -8,7 +8,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { refreshUser } from "../../redux/auth/operations";
-import RestrictedRoute from "../RestrictedRoute";
+import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 
 const App = () => {
   const dispatch = useDispatch();
