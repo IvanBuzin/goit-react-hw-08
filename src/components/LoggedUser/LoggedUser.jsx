@@ -1,13 +1,16 @@
-import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/selectors";
+import { ProgressBar } from "react-loader-spinner";
 
 const LoggedUser = () => {
-  const user = useSelector(selectUser);
   return (
-    <div>
-      <p>{user.name}</p>
-      <button type="button">LogOut</button>
-    </div>
+    <ProgressBar
+      visible={true}
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="progress-bar-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+    />
   );
 };
 
