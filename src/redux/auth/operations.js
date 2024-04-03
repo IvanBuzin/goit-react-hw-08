@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 const setAuthHeader = (token) => {
@@ -29,8 +30,10 @@ export const userLogIn = createAsyncThunk(
     try {
       const response = await axios.post("/users/login", userInfo);
       setAuthHeader(response.data.token);
+      toast.success("Login successful");
       return response.data;
     } catch (error) {
+      toast.error("Your enter wrong email or password");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -61,5 +64,13 @@ export const refreshUser = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      const reduxState = getState();
+      const savedToken = reduxState.auth.token;
+
+      return savedToken !== null;
+    },
   }
 );

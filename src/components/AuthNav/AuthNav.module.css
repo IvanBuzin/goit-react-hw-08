@@ -1,16 +1,12 @@
-.navigate {
-  display: flex;
-  justify-content: space-between;
-}
 .listLink {
   display: flex;
   gap: 12px;
 }
 .link {
   padding: 8px 16px;
-  border: 1px solid rgb(205, 228, 205);
+  border: 1px solid rgb(171, 231, 171);
   border-radius: 8px;
-  color: rgb(127, 143, 127);
+  color: rgb(135, 179, 135);
   font-size: 20px;
   text-decoration: none;
 }

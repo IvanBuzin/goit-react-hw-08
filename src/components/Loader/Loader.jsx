@@ -1,6 +1,6 @@
 import { ProgressBar } from "react-loader-spinner";
 
-const LoggedUser = () => {
+const Loader = () => {
   return (
     <ProgressBar
       visible={true}
@@ -14,4 +14,4 @@ const LoggedUser = () => {
   );
 };
 
-export default LoggedUser;
+export default Loader;

@@ -12,7 +12,7 @@
 }
 
 .textInput {
-  border: none;
+  border: 4px double black;
   border-radius: 8px;
   width: 360px;
   height: 36px;

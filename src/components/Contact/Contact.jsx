@@ -1,37 +1,41 @@
-import { FaPhoneAlt, FaUser, FaPhoneVolume } from "react-icons/fa";
+import { FaPhoneAlt, FaUser } from "react-icons/fa";
 import css from "./Contact.module.css";
-import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/operations";
+import { useState } from "react";
+import ModalDelete from "../Modal/ModalDelete";
 
-export const Contact = ({ contacts: { name, number, id } }) => {
-  const dispatch = useDispatch();
+const Contact = ({ contacts: { name, number, id } }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const formatNumber = (inputNumber) => {
+    const pattern = /(\d{3})(\d{2})(\d{2})/;
+    const formatedNumber = inputNumber.replace(pattern, "$1-$2-$3");
+    return formatedNumber;
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className={css.item}>
       <div className={css.paragraph}>
-        <div>
-          <p className={css.paragraphName}>
-            <FaUser className={css.icon} size={14} />
-            {name}
-          </p>
-          <p>
-            <FaPhoneAlt className={css.user} size={14} />
-            {number}
-          </p>
-        </div>
-        <a className={css.phoneLink} href={`tel:${number}`}>
-          <FaPhoneVolume className={css.phoneIcon} size={20} />
-        </a>
+        <p className={css.paragraphName}>
+          <FaUser className={css.icon} />
+          {name}
+        </p>
+        <p>
+          <FaPhoneAlt className={css.user} />
+          {formatNumber(number)}
+        </p>
       </div>
-      <hr className={css.line} />
-
-      <button
-        className={css.button}
-        type="button"
-        onClick={() => dispatch(deleteContact(id))}
-      >
+      <button className={css.button} type="button" onClick={handleOpen}>
         Delete
       </button>
+      <ModalDelete isOpen={isOpen} onClose={handleClose} contactId={id} />
     </div>
   );
 };

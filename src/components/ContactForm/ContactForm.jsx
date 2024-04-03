@@ -4,6 +4,7 @@ import { useId } from "react";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,11 @@ export const ContactForm = () => {
   const userSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too short!")
-      .max(50, "Too Long!")
+      .max(30, "Too Long!")
       .required("Required"),
     number: Yup.string()
       .min(3, "Too short!")
-      .max(50, "Too Long!")
+      .max(15, "Too Long!")
       .required("Required"),
   });
 
@@ -26,7 +27,14 @@ export const ContactForm = () => {
       name: value.name,
       number: value.number,
     };
-    dispatch(addContact(contactInfo));
+    dispatch(addContact(contactInfo))
+      .unwrap()
+      .then(() => {
+        toast.success("Contact added");
+      })
+      .catch(() => {
+        toast.error("Sorry, something went wrong.");
+      });
     actions.resetForm();
   };
 

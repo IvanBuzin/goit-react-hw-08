@@ -1,18 +1,22 @@
 import { useEffect } from "react";
 import { selectFilteredContacts } from "../../redux/contacts/selectors";
-import { Contact } from "../Contact/Contact";
+import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { nanoid } from "nanoid";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchContacts } from "../../redux/contacts/operations";
+import { selectIsLogged } from "../../redux/auth/selectors";
 
 export const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
+  const isloggedIn = useSelector(selectIsLogged);
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (isloggedIn) {
+      dispatch(fetchContacts());
+    }
+  }, [dispatch, isloggedIn]);
 
   return filteredContacts.length > 0 ? (
     <ul className={css.contactList}>
