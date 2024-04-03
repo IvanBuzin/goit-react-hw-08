@@ -1,7 +1,7 @@
 import { FaPhoneAlt, FaUser } from "react-icons/fa";
 import css from "./Contact.module.css";
 import { useState } from "react";
-import ModalDelete from "../Modal/ModalDelete";
+import ModalDelete from "../DeleteForm/DeleteForm";
 
 const Contact = ({ contacts: { name, number, id } }) => {
   const [isOpen, setIsOpen] = useState(false);
