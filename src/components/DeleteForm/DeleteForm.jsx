@@ -8,7 +8,7 @@ const DeleteForm = ({ isOpen, onClose, contactId }) => {
   const dispatch = useDispatch();
   const style = {
     borderRadius: "8px",
-    backgroundImage: "linear-gradient(#542c04, #ab5703)",
+    backgroundImage: "linear-gradient(#6e6b5e, #d6d4c9)",
     display: "block",
     padding: "16px",
     width: "480px",
