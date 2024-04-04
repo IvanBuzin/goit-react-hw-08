@@ -7,7 +7,7 @@ const Home = () => {
   const isLoggedIn = useSelector(selectIsLogged);
   return (
     <div className={css.mainBlock}>
-      <h1>PhonebooK</h1>
+      <h1>Phonebook</h1>
       <p className={css.text}>Hello...</p>
       {!isLoggedIn && (
         <p className={css.textLast}>
