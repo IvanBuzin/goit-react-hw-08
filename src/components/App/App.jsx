@@ -1,9 +1,8 @@
 import "../../../node_modules/modern-normalize/modern-normalize.css";
 import { Route, Routes } from "react-router-dom";
 import Loader from "../Loader/Loader";
-import PrivatRoute from "../PrivatRoute/PrivatRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Layout from "../Layout/Layout";
-import AppBar from "../AppBar/AppBar";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../../redux/auth/operations";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
@@ -26,7 +25,6 @@ const App = () => {
   }, [dispatch]);
   return (
     <div>
-      <AppBar />
       <Layout>
         {refreshing ? (
           <Loader />
@@ -38,14 +36,21 @@ const App = () => {
                 <Route
                   path="/register"
                   element={<RestrictedRoute component={<Register />} />}
+                  redirectTo="/contacts"
                 />
                 <Route
                   path="/login"
                   element={<RestrictedRoute component={<Login />} />}
+                  redirectTo="/contacts"
                 />
                 <Route
                   path="/contacts"
-                  element={<PrivatRoute component={<Contacts />} />}
+                  element={
+                    <PrivateRoute
+                      component={<Contacts />}
+                      redirectTo="/login"
+                    />
+                  }
                 />
               </Routes>
             </Suspense>

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { selectIsLogged } from "../../redux/auth/selectors";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { Link } from "react-router-dom";
 import css from "./Home.module.css";
 
 const Home = () => {
-  const isLoggedIn = useSelector(selectIsLogged);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <div className={css.mainBlock}>
       <h1>Phonebook</h1>

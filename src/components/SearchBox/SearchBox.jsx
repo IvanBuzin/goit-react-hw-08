@@ -22,6 +22,7 @@ export const SearchBox = () => {
         type="text"
         value={filteredName}
         onChange={searchInput}
+        placeholder="Enter name or number"
       />
     </div>
   );

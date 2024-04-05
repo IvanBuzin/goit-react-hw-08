@@ -1,5 +1,12 @@
+import AppBar from "../AppBar/AppBar";
+
 const Layout = ({ children }) => {
-  return <main>{children}</main>;
+  return (
+    <>
+      <AppBar />
+      {children}
+    </>
+  );
 };
 
 export default Layout;
