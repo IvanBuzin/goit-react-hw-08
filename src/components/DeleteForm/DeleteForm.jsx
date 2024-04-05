@@ -4,7 +4,7 @@ import { deleteContact } from "../../redux/contacts/operations";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 
-const DeleteForm = ({ isOpen, onClose, contactId }) => {
+const DeleteForm = ({ isOpen, onClose, contactId, name }) => {
   const dispatch = useDispatch();
   const style = {
     borderRadius: "8px",
@@ -36,13 +36,15 @@ const DeleteForm = ({ isOpen, onClose, contactId }) => {
     <Modal
       open={isOpen}
       onClose={onClose}
+      onClick={onClose}
+      onRequestClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       className={css.wrapper}
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Are you sure you want to delete this contact?
+          Are you sure you want to delete this contact{name}?
         </Typography>
         <Typography id="modal-modal-description" sx={cssButton}>
           <button className={css.button} type="button" onClick={handleDelete}>

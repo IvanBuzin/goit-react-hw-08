@@ -2,9 +2,11 @@ import { FaPhoneAlt, FaUser } from "react-icons/fa";
 import css from "./Contact.module.css";
 import { useState } from "react";
 import DeleteForm from "../DeleteForm/DeleteForm";
+import EditForm from "../EditForm/EditForm";
 
-const Contact = ({ contacts: { name, number, id } }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Contact = ({ data: { name, number, id } }) => {
+  const [editForm, setEditForm] = useState(false);
+  const [deleteForm, setDeleteForm] = useState(false);
 
   const formatNumber = (inputNumber) => {
     const pattern = /(\d{3})(\d{2})(\d{2})/;
@@ -12,12 +14,17 @@ const Contact = ({ contacts: { name, number, id } }) => {
     return formatedNumber;
   };
 
-  const handleOpen = () => {
-    setIsOpen(true);
+  const openEditForm = () => {
+    setEditForm(true);
   };
-
-  const handleClose = () => {
-    setIsOpen(false);
+  const closeEditForm = () => {
+    setEditForm(false);
+  };
+  const openDeleteForm = () => {
+    setDeleteForm(true);
+  };
+  const closeDeleteForm = () => {
+    setDeleteForm(false);
   };
 
   return (
@@ -32,10 +39,31 @@ const Contact = ({ contacts: { name, number, id } }) => {
           {formatNumber(number)}
         </p>
       </div>
-      <button className={css.button} type="button" onClick={handleOpen}>
-        Delete
-      </button>
-      <DeleteForm isOpen={isOpen} onClose={handleClose} contactId={id} />
+      <div>
+        <button className={css.button} type="button" onClick={openEditForm}>
+          Edit
+        </button>
+        <button className={css.button} type="button" onClick={openDeleteForm}>
+          Delete
+        </button>
+      </div>
+      {editForm && (
+        <EditForm
+          isOpen={openEditForm}
+          id={id}
+          name={name}
+          number={number}
+          onClose={closeEditForm}
+        />
+      )}{" "}
+      {deleteForm && (
+        <DeleteForm
+          isOpen={openDeleteForm}
+          id={id}
+          name={name}
+          onClose={closeDeleteForm}
+        />
+      )}
     </div>
   );
 };

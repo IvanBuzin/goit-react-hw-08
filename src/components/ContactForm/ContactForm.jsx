@@ -14,11 +14,11 @@ export const ContactForm = () => {
   const userSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, "Too short!")
-      .max(30, "Too Long!")
+      .max(50, "Too Long!")
       .required("Required"),
     number: Yup.string()
       .min(3, "Too short!")
-      .max(15, "Too Long!")
+      .max(50, "Too Long!")
       .required("Required"),
   });
 

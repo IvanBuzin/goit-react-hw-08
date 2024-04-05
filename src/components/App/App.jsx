@@ -1,6 +1,5 @@
 import "../../../node_modules/modern-normalize/modern-normalize.css";
 import { Route, Routes } from "react-router-dom";
-import Loader from "../Loader/Loader";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Layout from "../Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +16,7 @@ const Register = lazy(() => import("../../Pages/Register/Register"));
 const Home = lazy(() => import("../../Pages/Home/Home"));
 
 const App = () => {
-  const refreshing = useSelector(selectIsRefreshing);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,8 +25,8 @@ const App = () => {
   return (
     <div>
       <Layout>
-        {refreshing ? (
-          <Loader />
+        {isRefreshing ? (
+          <b>Refreshing user, please wait...</b>
         ) : (
           <div className={css.main}>
             <Suspense fallback={null}>

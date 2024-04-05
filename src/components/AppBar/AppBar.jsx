@@ -5,8 +5,8 @@ import {
 } from "../../redux/auth/selectors";
 import UserMenu from "../UserMenu/UserMenu";
 import Navigation from "../Navigation/Navigation";
-import RegistrationMenu from "../AuthNav/AuthNav";
 import css from "./AppBar.module.css";
+import AuthNav from "../AuthNav/AuthNav";
 
 const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -16,9 +16,7 @@ const AppBar = () => {
     <header className={css.header}>
       <Navigation />
       <h1 className={css.title}>Phonebook</h1>
-      {!isRefreshing && (
-        <div>{isLoggedIn ? <UserMenu /> : <RegistrationMenu />}</div>
-      )}
+      {!isRefreshing && <div>{isLoggedIn ? <UserMenu /> : <AuthNav />}</div>}
     </header>
   );
 };
