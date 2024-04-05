@@ -17,9 +17,9 @@ const Register = lazy(() => import("../../Pages/Register/Register"));
 const Home = lazy(() => import("../../Pages/Home/Home"));
 
 const App = () => {
-  const dispatch = useDispatch();
   const refreshing = useSelector(selectIsRefreshing);
 
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -30,7 +30,7 @@ const App = () => {
           <Loader />
         ) : (
           <div className={css.main}>
-            <Suspense fallback={<Loader />}>
+            <Suspense fallback={null}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route
