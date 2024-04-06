@@ -5,7 +5,8 @@ import {
   addContact,
   editContact,
 } from "./operations";
-import { logout } from "../auth/operations";
+import { userLogOut } from "../auth/operations";
+
 const initialContacts = {
   items: [],
   loading: false,
@@ -69,7 +70,7 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(logout.fulfilled, (state) => {
+      .addCase(userLogOut.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
         state.items = [];
