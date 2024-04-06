@@ -3,9 +3,9 @@ import {
   fetchContacts,
   deleteContact,
   addContact,
-  updateContact,
+  editContact,
 } from "./operations";
-
+import { logout } from "../auth/operations";
 const initialContacts = {
   items: [],
   loading: false,
@@ -19,27 +19,30 @@ const slice = createSlice({
     builder
       .addCase(fetchContacts.pending, (state) => {
         state.loading = true;
+        state.error = false;
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
       })
-      .addCase(fetchContacts.rejected, (state, action) => {
+      .addCase(fetchContacts.rejected, (state) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = true;
       })
       .addCase(addContact.pending, (state) => {
         state.loading = true;
+        state.error = false;
       })
       .addCase(addContact.fulfilled, (state, action) => {
         state.loading = false;
         state.items.push(action.payload);
       })
-      .addCase(addContact.rejected, (state, action) => {
+      .addCase(addContact.rejected, (state) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = true;
       })
       .addCase(deleteContact.pending, (state) => {
+        state.error = false;
         state.loading = true;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
@@ -52,18 +55,24 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(updateContact.pending, (state) => {
+      .addCase(editContact.pending, (state) => {
         state.loading = true;
       })
-      .addCase(updateContact.fulfilled, (state, action) => {
+      .addCase(editContact.fulfilled, (state, action) => {
         state.loading = false;
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
+        state.items[state.items] = action.payload;
       })
-      .addCase(updateContact.rejected, (state, action) => {
+      .addCase(editContact.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+        state.items = [];
       }),
 });
 
