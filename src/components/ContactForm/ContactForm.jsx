@@ -2,7 +2,7 @@ import { Field, Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId } from "react";
 import css from "./ContactForm.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
 
@@ -26,6 +26,8 @@ export const ContactForm = () => {
     const contactInfo = {
       name: value.name,
       number: value.number,
+      nameId: value.useId,
+      numberId: value.useId,
     };
     dispatch(addContact(contactInfo))
       .unwrap()
