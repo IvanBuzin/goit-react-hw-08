@@ -8,12 +8,6 @@ const Contact = ({ data: { name, number, id } }) => {
   const [editForm, setEditForm] = useState(false);
   const [deleteForm, setDeleteForm] = useState(false);
 
-  const formatNumber = (inputNumber) => {
-    const pattern = /(\d{3})(\d{2})(\d{2})/;
-    const formatedNumber = inputNumber.replace(pattern, "$1-$2-$3");
-    return formatedNumber;
-  };
-
   const openEditForm = () => {
     setEditForm(true);
   };
@@ -36,7 +30,7 @@ const Contact = ({ data: { name, number, id } }) => {
         </p>
         <p>
           <FaPhoneAlt className={css.user} />
-          {formatNumber(number)}
+          {number}
         </p>
       </div>
       <div>
