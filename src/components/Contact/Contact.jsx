@@ -4,7 +4,7 @@ import { useState } from "react";
 import DeleteForm from "../DeleteForm/DeleteForm";
 import EditForm from "../EditForm/EditForm";
 
-const Contact = ({ data: { id, name, number } }) => {
+export default function Contact({ data: { id, name, number } }) {
   const [editForm, setEditForm] = useState(false);
   const [deleteForm, setDeleteForm] = useState(false);
 
@@ -60,6 +60,4 @@ const Contact = ({ data: { id, name, number } }) => {
       )}
     </div>
   );
-};
-
-export default Contact;
+}
