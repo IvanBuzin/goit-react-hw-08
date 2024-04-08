@@ -4,7 +4,7 @@ import { useState } from "react";
 import DeleteForm from "../DeleteForm/DeleteForm";
 import EditForm from "../EditForm/EditForm";
 
-const Contact = ({ data: { name, number, id } }) => {
+const Contact = ({ data: { id, name, number } }) => {
   const [editForm, setEditForm] = useState(false);
   const [deleteForm, setDeleteForm] = useState(false);
 
@@ -26,11 +26,11 @@ const Contact = ({ data: { name, number, id } }) => {
       <div className={css.paragraph}>
         <p className={css.paragraphName}>
           <FaUser className={css.icon} />
-          {name}
+          <p>{name}</p>
         </p>
         <p>
           <FaPhoneAlt className={css.user} />
-          {number}
+          <p>{number}</p>
         </p>
       </div>
       <div>
@@ -49,7 +49,7 @@ const Contact = ({ data: { name, number, id } }) => {
           number={number}
           onClose={closeEditForm}
         />
-      )}{" "}
+      )}
       {deleteForm && (
         <DeleteForm
           isOpen={openDeleteForm}
