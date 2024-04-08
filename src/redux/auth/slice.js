@@ -3,10 +3,10 @@ import { refreshUser, userLogIn, userLogOut, userRegister } from "./operations";
 
 const initialUserInfo = {
   user: {
-    name: "",
-    email: "",
+    name: null,
+    email: null,
   },
-  token: "",
+  token: null,
   isLoggedIn: false,
   loader: false,
   error: null,
