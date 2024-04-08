@@ -1,17 +1,14 @@
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useId } from "react";
+import { nanoid } from "nanoid";
 import css from "./ContactForm.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
-import { notifi, addContactToast, addContactErrToast } from ;
-import { selectContacts } from "../../redux//contacts/slice";
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const userNameId = useId();
-  const userNumberId = useId();
-  const contacts = useSelector(selectContacts);
+  const userNameId = nanoid();
+  const userNumberId = nanoid();
 
   const initialValues = { name: "", number: "" };
 
@@ -26,23 +23,19 @@ export const ContactForm = () => {
       .required("Required"),
   });
 
-  const handleSubmit = (value, actions) => {
-    contacts.find((contact) => contact.name.trim("") === values.name.trim(""))
-      ? notifi()
-      : (dispatch(addContact(values))
-          .unwrap()
-          .then(() => {
-            addContactToast(values.name);
-          }),
-        actions.resetForm());
+  const handleSubmit = (values, actions) => {
+    dispatch(
+      addContact({
+        name: values.name,
+        number: values.number,
+      })
+    );
+    actions.resetForm();
   };
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        number: "",
-      }}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={userSchema}
     >
