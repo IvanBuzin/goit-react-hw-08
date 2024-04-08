@@ -1,29 +1,28 @@
 import { Field, Form, Formik, ErrorMessage } from "formik";
-import { useId } from "react";
+//import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { userLogIn } from "../../redux/auth/operations";
-import * as Yup from "yup";
+import { toast } from "react-hot-toast";
 import css from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const emailId = useId();
-  const passwordId = useId();
+  //const emailId = useId();
+  //const passwordId = useId();
 
-  const userSchema = Yup.object().shape({
-    email: Yup.string().min(3, "Too short!").required("Required"),
-    password: Yup.string()
-      .min(6, "Too short!")
-      .max(20, "To Long!")
-      .required("Required"),
-  });
+  // const userSchema = Yup.object().shape({
+  //   email: Yup.string().min(3, "Too short!").required("Required"),
+  //  password: Yup.string()
+  //     .min(6, "Too short!")
+  //     .max(20, "To Long!")
+  //     .required("Required"),
+  //  });
 
   const handleSubmit = (values, actions) => {
-    const userInfo = {
-      email: values.email,
-      password: values.password,
-    };
-    dispatch(userLogIn(userInfo));
+    if (!values.email.trim() || !values.password.trim()) {
+      return toast.error("Not all fields are filled in!");
+    }
+    dispatch(userLogIn(values));
     actions.resetForm();
   };
 
@@ -34,20 +33,12 @@ const LoginForm = () => {
         password: "",
       }}
       onSubmit={handleSubmit}
-      validationSchema={userSchema}
     >
-      <Form className={css.mainForm}>
+      <Form className={css.mainForm} autoComplete="off">
         <div className={css.inputList}>
           <div>
-            <label className={css.label} htmlFor={emailId}>
-              Your email
-            </label>
-            <Field
-              className={css.input}
-              type="text"
-              name="email"
-              id={emailId}
-            />
+            <label className={css.label}>Your email</label>
+            <Field className={css.input} type="text" name="email" />
             <ErrorMessage
               name="email"
               component="span"
@@ -55,15 +46,8 @@ const LoginForm = () => {
             />
           </div>
           <div className={css.inputItem}>
-            <label className={css.label} htmlFor={passwordId}>
-              Password
-            </label>
-            <Field
-              className={css.input}
-              type="text"
-              name="password"
-              id={passwordId}
-            />
+            <label className={css.label}>Password</label>
+            <Field className={css.input} type="text" name="password" />
             <ErrorMessage
               name="password"
               component="span"
@@ -72,7 +56,7 @@ const LoginForm = () => {
           </div>
 
           <button className={css.button} type="submit">
-            Confirm
+            Log In
           </button>
         </div>
       </Form>
