@@ -4,12 +4,16 @@ import { useId } from "react";
 import css from "./ContactForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
-import toast from "react-hot-toast";
+import { notifi, addContactToast, addContactErrToast } from ;
+import { selectContacts } from "../../redux//contacts/slice";
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const userNameId = useId();
   const userNumberId = useId();
+  const contacts = useSelector(selectContacts);
+
+  const initialValues = { name: "", number: "" };
 
   const userSchema = Yup.object().shape({
     name: Yup.string()
@@ -23,21 +27,14 @@ export const ContactForm = () => {
   });
 
   const handleSubmit = (value, actions) => {
-    const contactInfo = {
-      name: value.name,
-      number: value.number,
-      nameId: value.useId,
-      numberId: value.useId,
-    };
-    dispatch(addContact(contactInfo))
-      .unwrap()
-      .then(() => {
-        toast.success("Contact added");
-      })
-      .catch(() => {
-        toast.error("Sorry, something went wrong.");
-      });
-    actions.resetForm();
+    contacts.find((contact) => contact.name.trim("") === values.name.trim(""))
+      ? notifi()
+      : (dispatch(addContact(values))
+          .unwrap()
+          .then(() => {
+            addContactToast(values.name);
+          }),
+        actions.resetForm());
   };
 
   return (
